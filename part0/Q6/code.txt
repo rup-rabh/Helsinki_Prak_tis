@@ -1,0 +1,18 @@
+sequenceDiagram
+  participant user as user
+  participant browser as browser
+  participant server as server
+
+  user ->> browser: Requests Page
+  browser ->>+ server: GET Requesting page/CSS/JS one by one 
+  server -->>- browser: HTML document rendering and fetching reqirements
+  user ->> browser: User Inputs and hits Enter/Save
+  
+  browser ->>+ server: POSTS https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+  Note right of browser: The call back function on submisstion is triggered
+  Note right of browser: The input is directly added notes list and are rerendered 
+  Note right of server: Server takes the input and<br> updates the database
+
+  server -->>- browser: responds with status code: 201 Created i.e successful update
+
+    

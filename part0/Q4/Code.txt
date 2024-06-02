@@ -1,0 +1,16 @@
+sequenceDiagram
+  participant user as user
+  participant browser as browser
+  participant server as server
+
+  user ->> browser: Requests Page
+  browser ->>+ server: GET Requesting page/CSS/JS one by one 
+  server -->>- browser: HTML document rendering and fetching reqirements
+  user ->> browser: User Inputs and hits Enter/Save
+  
+  browser ->>+ server: POSTS https://studies.cs.helsinki.fi/exampleapp/new_note
+  Note right of server: Server takes the input and<br> updates the database
+  server -->>- browser: Responds with status code 302 i.e a reload
+  browser ->>+ server: GET Requesting page,document reloading
+  server -->>- browser: updated html/data is sent , (previously handled)
+    
